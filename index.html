@@ -1,8 +1,23 @@
 <html>
   <body>
-    <script src='https://unpkg.com/redux@4.0.0/dist/redux.min.js'>
-    </script>
-    <script src=''>
-    </script>
+    <form id="add_entry">
+      <label>Amt:</label>
+      <input 
+        type="number"
+        min="0"
+        name="amt"
+        required
+      />
+      <label>Description</label>
+      <input name="description" />
+      <select name="type">
+        <option>Debit</option>
+        <option>Credit</option>
+      </select>
+      <button>Add Entry</button>
+    </form>
+
+    <script src="https://unpkg.com/redux@4.0.0/dist/redux.min.js"></script>
+    <script src="./main.js"></script>
   </body>
 </html>

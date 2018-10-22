@@ -1,24 +1,26 @@
-const ADD_DEBIT = 'ADD_DEBIT'
-const ADD_CREDIT = "ADD_CREDIT"
+//Action Creators
+const ADD_ENTRY = ' ADD_ENTRY'
 
-const addDebit = (debit) => {
-  return { type: ADD_CREDIT, debit}
+//Actions
+const addEntry = (entry) => {
+  return { type: ADD_ENTRY, debit: {...debit, type: 'Debit'} }
 }
 
-const addCredit = (credit) => {
-  return { type: ADD_CREDIT, credit}
-}
-
+//Reducer
 const ledger = (state = [], action) => {
   switch(action.type) {
-    case ADD_DEBIT:
-      return [...state, action.debit]
-    case ADD_CREDIT:
-      return [...state, action.credit]
+    case ADD_ENTRY:
+      return [...state, action.entry]
     default:
       return state
   }
 }
+
+//store
+// getState()
+// dispatch()
+// subscribe()
+// replaceReducer()
 
 const { createStore, combineReducers, compose } = Redux
 
@@ -29,9 +31,20 @@ const rootReducer = combineReducers({
 const store = createStore(
   rootReducer,
   {},
-  window.__REDUX_DEVTOOL_EXTENSION && window.__REDUX-DEVTOOLS_EXTENSION()
+  window.__REDUX_DEVTOOLS_EXTENSION && window.__REDUX_DEVTOOLS_EXTENSION()
 )
 
-store.dipatch(addDebit(-40))
-store.dispatch(addCredit(60))
-console.log (store)
+const handleSubmit = (e) => {
+  e.preventDefault()
+  const obj = {}
+  const form = e.target
+  for (let el of form.elements) {
+    if (el.name)
+      obj[el.name] = encodeURIComponent(el.value)
+  }
+  store.dispatch(addEntry(obj))
+  form.reset()
+  console.log(store.getState().ledger)
+}
+
+document.getElementById('add_entry').addEventListener('submit',handleSubmit)
