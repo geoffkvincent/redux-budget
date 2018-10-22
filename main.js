@@ -1,9 +1,9 @@
 //Action Creators
-const ADD_ENTRY = ' ADD_ENTRY'
+const ADD_ENTRY = 'ADD_ENTRY'
 
 //Actions
 const addEntry = (entry) => {
-  return { type: ADD_ENTRY, debit: {...debit, type: 'Debit'} }
+  return { type: ADD_ENTRY, entry }
 }
 
 //Reducer
@@ -34,6 +34,16 @@ const store = createStore(
   window.__REDUX_DEVTOOLS_EXTENSION && window.__REDUX_DEVTOOLS_EXTENSION()
 )
 
+const updateHistory = () => {
+  const list = documnet.getElementById('history')
+  const entries = store.getState().ledger
+  list.innerHTML = nullentries.forEach( (entry) => {
+    const item = document.createElement('li')
+    item .innerHTML = `$${entry.smt} - ${entry.description}`
+    item.className = entry.typelist.append(item)
+  })
+}
+
 const handleSubmit = (e) => {
   e.preventDefault()
   const obj = {}
@@ -42,9 +52,10 @@ const handleSubmit = (e) => {
     if (el.name)
       obj[el.name] = encodeURIComponent(el.value)
   }
+
   store.dispatch(addEntry(obj))
+  updateHistory()
   form.reset()
-  console.log(store.getState().ledger)
 }
 
-document.getElementById('add_entry').addEventListener('submit',handleSubmit)
+document.getElementById('add_entry').addEventListener('submit', handleSubmit)
