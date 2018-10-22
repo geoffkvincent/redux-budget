@@ -35,12 +35,14 @@ const store = createStore(
 )
 
 const updateHistory = () => {
-  const list = documnet.getElementById('history')
+  const list = document.getElementById('history')
   const entries = store.getState().ledger
-  list.innerHTML = nullentries.forEach( (entry) => {
+  list.innerHTML = null
+  entries.forEach( (entry) => {
     const item = document.createElement('li')
-    item .innerHTML = `$${entry.smt} - ${entry.description}`
-    item.className = entry.typelist.append(item)
+    item.innerHTML = `$${entry.amt} - ${entry.description}`
+    item.className = entry.type
+    list.append(item)
   })
 }
 
@@ -54,8 +56,15 @@ const handleSubmit = (e) => {
   }
 
   store.dispatch(addEntry(obj))
-  updateHistory()
   form.reset()
 }
+
+const log = () => {
+  console.log( store.getState().ledger )
+}
+
+store.subscribe(updateHistory)
+store.subscribe( () => console.log('Store Changed') )
+store.subscribe(log)
 
 document.getElementById('add_entry').addEventListener('submit', handleSubmit)
