@@ -19,3 +19,19 @@ const ledger = (state = [], action) => {
       return state
   }
 }
+
+const { createStore, combineReducers, compose } = Redux
+
+const rootReducer = combineReducers({
+  ledger,
+})
+
+const store = createStore(
+  rootReducer,
+  {},
+  window.__REDUX_DEVTOOL_EXTENSION && window.__REDUX-DEVTOOLS_EXTENSION()
+)
+
+store.dipatch(addDebit(-40))
+store.dispatch(addCredit(60))
+console.log (store)
