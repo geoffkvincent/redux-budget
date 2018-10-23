@@ -4,14 +4,25 @@ import Transaction from './Transaction'
 import styled from 'styled-components'
 
 const List = styled.ul`
-  list-styled: none;
+  list-style: none;
 `
-<
+
+const calcTotal = (ledger) => {
+  return ledger.reduce( (total, entry) => {
+    const amt = parseFloat(entry.amt)
+    if (entry.type === 'Debit')
+      return total - amt
+    return total + amt
+  }, 0)
+}
+
 const Transactions = ({ ledger }) => (
   <Fragment>
     <h1>Ledger</h1>
-    <h4>Balance { ledger.reduce( (t,e) => t + parseFloat(e.amt), 0 )}</h4>
-    { ledger.map( (entry, i) => <Transaction key={i} index={i} {...entry} /> ) }
+    <h4>Balance ${ calcTotal(ledger) }</h4>
+    <List>
+      { ledger.map( (entry, i) => <Transaction key={i} index={i} {...entry} /> ) }
+    </List>
   </Fragment>
 )
 
