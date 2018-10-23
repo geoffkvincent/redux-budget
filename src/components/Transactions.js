@@ -1,7 +1,12 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import Transaction from './Transaction'
+import styled from 'styled-components'
 
+const List = styled.ul`
+  list-styled: none;
+`
+<
 const Transactions = ({ ledger }) => (
   <Fragment>
     <h1>Ledger</h1>
