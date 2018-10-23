@@ -1,37 +1,49 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { addEntry } from '../reducer/ledger'
-import {Input, Button, Flex, FormBox} from './Shared'
+import { addItem } from '../reducers/items'
+import {
+  Input,
+  Button,
+  Flex,
+  FormBox,
+} from './Shared'
 
-class LedgerForm extends React.Component {
+class WishListForm extends React.Component {
   defaultState = {
-    amt: '',
+    cost: '',
     description: '',
-    type: 'Debit',
+    type: 'Want',
   }
 
   state = this.defaultState
 
-  handleSubmit = () => {
+  handleSubmit = (e) => {
     e.preventDefault()
-    this.props.dispatch(addEntry(this.state))
+    this.props.dispatch(addItem(this.state))
     this.setState(this.defaultState)
   }
 
-  handleChange = () => {
+  handleChange = (e) => {
     const { value, name } = e.target
-    this.setState({[name]: value})
+    this.setState({ [name]: value })
   }
 
   render() {
-    const{ amt, description, type} = this.state
-    return(
+    const { cost, description, type } = this.state
+    return (
       <FormBox onSubmit={this.handleSubmit}>
         <Flex
           alignItems="stretch"
-          direction="column"<
+          direction="column"
         >
           <Input
+            type="number"
+            min="0"
+            name="cost"
+            value={cost}
+            onChange={this.handleChange}
+            placeholder="Cost"
+            required
           />
           <Input
             name="description"
@@ -39,11 +51,19 @@ class LedgerForm extends React.Component {
             value={description}
             onChange={this.handleChange}
           />
+          <select
+            name="type"
+            onChange={this.handleChange}
+            value={type}
+          >
+            <option>Want</option>
+            <option>Need</option>
+          </select>
+          <Button>Add Item</Button>
         </Flex>
       </FormBox>
     )
   }
-
 }
 
-export default connect()(LedgerForm)
+export default connect()(WishListForm)
