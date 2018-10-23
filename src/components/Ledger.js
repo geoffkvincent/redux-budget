@@ -3,7 +3,7 @@ import Transactions from './Transactions'
 
 const Ledger = () => (
   <div>
-    <Transactions />
+    <Transactions /><
   </div>
 )
 export default Ledger
