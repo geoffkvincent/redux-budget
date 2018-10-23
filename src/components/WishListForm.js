@@ -12,7 +12,7 @@ class WishListForm extends React.Component {
   defaultState = {
     cost: '',
     description: '',
-    type: 'Want',
+    item_type: 'Want',
   }
 
   state = this.defaultState
@@ -29,7 +29,7 @@ class WishListForm extends React.Component {
   }
 
   render() {
-    const { cost, description, type } = this.state
+    const { cost, description, item_type } = this.state
     return (
       <FormBox onSubmit={this.handleSubmit}>
         <Flex
@@ -52,9 +52,9 @@ class WishListForm extends React.Component {
             onChange={this.handleChange}
           />
           <select
-            name="type"
+            name="item_type"
             onChange={this.handleChange}
-            value={type}
+            value={item_type}
           >
             <option>Want</option>
             <option>Need</option>

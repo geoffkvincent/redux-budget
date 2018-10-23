@@ -12,7 +12,7 @@ class LedgerForm extends React.Component {
   defaultState = {
     amt: '',
     description: '',
-    type: 'Debit',
+    entry_type: 'Debit',
   }
 
   state = this.defaultState
@@ -29,7 +29,7 @@ class LedgerForm extends React.Component {
   }
 
   render() {
-    const { amt, description, type } = this.state
+    const { amt, description, entry_type } = this.state
     return (
       <FormBox onSubmit={this.handleSubmit}>
         <Flex
@@ -52,9 +52,9 @@ class LedgerForm extends React.Component {
             onChange={this.handleChange}
           />
           <select
-            name="type"
+            name="entry_type"
             onChange={this.handleChange}
-            value={type}
+            value={entry_type}
           >
             <option>Debit</option>
             <option>Credit</option>
