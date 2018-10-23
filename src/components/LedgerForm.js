@@ -34,6 +34,10 @@ class LedgerForm extends React.Component {
           <Input
           />
           <Input
+            name="description"
+            placeholder="Description"
+            value={description}
+            onChange={this.handleChange}
           />
         </Flex>
       </FormBox>
