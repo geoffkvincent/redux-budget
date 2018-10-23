@@ -10,7 +10,7 @@ class LedgerForm extends React.Component {
     type: 'Debit',
   }
 
-  state = this.defaultState
+  state = this.defaultState<
 
   handleSubmit = () => {
     e.preventDefault()
