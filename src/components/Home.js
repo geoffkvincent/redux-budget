@@ -7,7 +7,7 @@ import { Flex } from './Shared'
 import { connect } from 'react-redux'
 import { getEntries } from '../reducers/ledger'
 
-class App extends React.Component {
+class Home extends React.Component {
   componentDidMount() {
     this.props.dispatch(getEntries())
   }
@@ -28,4 +28,4 @@ class App extends React.Component {
   }
 }
 
-export default connect()(App)
+export default connect()(Home)
