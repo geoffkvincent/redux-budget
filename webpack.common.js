@@ -1,18 +1,22 @@
 const path = require('path')
-const CleanWebpackPlugin = re<
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const config = {
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js"
+    filename: "bundle.js",
+    publicPath: "/"
   },
 
-  devServer: {
-    proxy: {
-      '/api': 'http://localhost:3001'
-    }
-  },
+  plugins: [
+    new CleanWebpackPlugin(['dist']),
+    new HtmlWebpackPlugin({
+      title: 'Budget',
+      template: './index.html'
+    })
+  ],
 
   module: {
     rules: [
@@ -24,9 +28,7 @@ const config = {
         }
       }
     ]
-  },
-  mode: "development",
-  devtool: "source-map"
+  }
 }
 
 module.exports = config
