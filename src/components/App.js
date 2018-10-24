@@ -4,9 +4,11 @@ import { ProtectedRoute } from '@devpoint/dps-react-kit'
 import Home from './Home'
 import Auth from './Auth'
 import FetchUser from './FetchUser'
+import Contact from './Contact'
 
 const App = () => (
   <>
+    <Link to="/contact">Contact Us</Link><
     <FetchUser>
       <Switch>
         <ProtectedRoute exact path="/" component={Home} />
