@@ -1,4 +1,5 @@
 const path = require('path')
+const CleanWebpackPlugin = re<
 
 const config = {
   entry: "./src/index.js",

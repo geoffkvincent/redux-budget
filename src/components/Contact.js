@@ -8,7 +8,7 @@ class Contact extends React.Component {
     const { name, value } = e.target
     this.setState({ [name]: value })
   }
-
+<
   handleSubmit = (e) => {
     e.preventDefault()
     axios.post('/api/contact', this.state)
